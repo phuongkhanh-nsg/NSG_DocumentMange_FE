@@ -36,7 +36,7 @@ const SchedulePage = () => {
     const loadUsers = async () => {
         try {
             const res = await getAllUsers();
-            if (res.success) {
+            if (res && res.users) {
                 setUsers(res.users);
             }
         } catch (error) {
