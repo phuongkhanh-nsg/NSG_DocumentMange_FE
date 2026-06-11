@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, Badge, Modal, Form, Input, DatePicker, Select, Button, message } from 'antd';
 import dayjs from 'dayjs';
 import { getTasks, createTask, updateTask, deleteTask } from '../../api/taskApi';
-import { fetchUsers } from '../../api/userApi';
+import { getAllUsers } from '../../api/auth';
 import { useNotificationContext } from '../../context/NotificationContext';
 
 const { Option } = Select;
@@ -35,9 +35,9 @@ const SchedulePage = () => {
 
     const loadUsers = async () => {
         try {
-            const res = await fetchUsers(1, 100);
+            const res = await getAllUsers();
             if (res.success) {
-                setUsers(res.data);
+                setUsers(res.users);
             }
         } catch (error) {
             console.error("Lỗi tải danh sách người dùng", error);
